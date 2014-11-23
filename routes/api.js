@@ -18,8 +18,7 @@ router.get('/balance', function(req, res){
 	});
 });
 
-// switch to post
-router.get('/buy/:breads', function(req, res){
+router.post('/buy/:breads', function(req, res){
 	core.buyBreads(req.params.breads, function callback(data){
 		send(res, data, 200);
 	});	
