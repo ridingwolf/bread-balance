@@ -1,35 +1,58 @@
 var fs = require('fs');
 
-var debtFile = 'debt.json';
+var debtFile = '../debt.json',
+paymentsFile = '../payments.json';
 
 function collectDebtData(getDataCallback){
-	fs.readFile(debtFile, function processJsonFile(err, data){
-		if(err){
-			getDataCallback({ "error" : err.toString() });
+	fs.exists(debtFile, function (exists){
+		if(exists){
+			fs.readFile(debtFile, function processJsonFile(err, data){
+				if(err){
+					getDataCallback({ "error" : err.toString() });
+				}
+				
+				try{
+					getDataCallback(JSON.parse(data))
+				}
+				catch(ex){
+					getDataCallback({ "error" : ex.toString()});
+				}
+			});			
 		}
-		
-		try{
-			getDataCallback(JSON.parse(data))
-		}
-		catch(ex){
-			getDataCallback({ "error" : ex.toString()});
+		else{
+			getDataCallback({});
 		}
 	});
 }
 
-function updateDebtData(data, updateDebtDataCallback){
+function updateDebts(data, updateDebtsCallback){
 	try{
-		fs.writeFile(debtFile, JSON.stringify(data), function callBack(err){
+		fs.writeFile(debtFile, JSON.stringify(data, null, '\t'), function callBack(err){
 		if(err)
-			updateDebtDataCallback({ 'error' : err.toString() });
+			updateDebtsCallback({ 'error' : err.toString() });
 		else
-			updateDebtDataCallback(data);
+			updateDebtsCallback(data);
 		});
 	}
 	catch(ex){
-		updateDebtDataCallback({ 'error' : ex.toString() });
+		updateDebtsCallback({ 'error' : ex.toString() });
+	}
+}
+
+function updatePayments(data, updatePaymentsCallback){
+	try{
+		fs.writeFile(debtFile, JSON.stringify(data, null, '\t'), function callBack(err){
+		if(err)
+			updatePaymentsCallback({ 'error' : err.toString() });
+		else
+			updatePaymentsCallback(data);
+		});
+	}
+	catch(ex){
+		updatePaymentsCallback({ 'error' : ex.toString() });
 	}
 }
 
 module.exports.collectDebtData = collectDebtData;
-module.exports.updateDebtData = updateDebtData;
+module.exports.updateDebts = updateDebts;
+module.exports.updatePayments = updatePayments;

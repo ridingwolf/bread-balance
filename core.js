@@ -38,6 +38,13 @@ function buyBreads(numberOfBreads, sendData){
 				item.price += debt[today].price;
 			}
 			debt[today] = item;
+			
+			if(debt['error']){
+				debt['error'] = null;
+				delete debt['error'];
+			}
+
+
 			data.updateDebtData(debt, sendData);
 		}
 		catch(ex){

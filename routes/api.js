@@ -3,13 +3,13 @@ var core = require('../core');
 
 function send(res, rawData, data){
 	if(rawData.error)
-		res.send(rawData.error, 500);
+		res.status(500).send(rawData.error);
 	else
 		res.send(data || rawData).end();	
 }
 
 router.get('/', function(req, res) {
-  res.send('bread balance API-root', 200);
+  res.status(200).send('bread balance API-root');
 });
 
 router.get('/balance', function(req, res){
