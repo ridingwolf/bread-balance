@@ -8,7 +8,6 @@ function send(res, rawData, data){
 		res.send(data || rawData).end();	
 }
 
-
 router.get('/', function(req, res) {
   res.status(200).send('bread balance API-root { get: [\'/balance\'], post: [\'/buy/:breads\', \'/pay/:amount\']}');
 });
