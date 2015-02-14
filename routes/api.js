@@ -12,6 +12,7 @@ router.get('/', function(req, res) {
   res.status(200).send('bread balance API-root { get: [\'/balance\'], post: [\'/buy/:breads\', \'/pay/:amount\']}');
 });
 
+
 router.get('/balance', function(req, res){
 	core.getBalance(function callback(data){
 		send(res, data);
