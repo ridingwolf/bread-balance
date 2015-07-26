@@ -10,14 +10,22 @@ function getBalance(sendData){
 			return;
 		}
 
-		var balance = 0.0;
-		_.forEach(data, function addToTotal(log){
-			balance -= log.price;
+		var dates = Object.keys(data),
+		balance = 0.0
+		history = [];
+
+		_.forEach(dates, function addToTotal(date){
+			var purchase = data[date];
+			if(purchase){
+				balance -= purchase.price;
+				purchase['date'] = date;
+				history.push(purchase);
+			}
 		});
 
 		sendData({ 
 			'balance' : balance,
-			'history' : data
+			'history' : history
 		});
 	});
 }
