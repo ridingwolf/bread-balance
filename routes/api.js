@@ -1,6 +1,23 @@
 var router = require('express').Router();
 var core = require('../core');
 
+var api_list = {
+	'bread-balance API' : {
+		'balance' : {
+			'method' : 'get',
+			'parameters' : []
+		},
+		'buy' : {
+			'method' : 'post',
+			'parameters' : [ { 'breads' : 'double' } ]
+		},
+		'pay' : {
+			'method' : 'post',
+			'parameters' : [ { 'amount' : 'double' } ]
+		},
+	}
+};
+
 function send(res, rawData, data){
 	if(rawData.error)
 		res.status(500).send(rawData.error);
@@ -9,23 +26,6 @@ function send(res, rawData, data){
 }
 
 router.get('/?', function(req, res) {
-	var api_list = {
-		'bread balance API' : {
-			'balance' : {
-				'method' : 'get',
-				'parameters' : []
-			},
-			'buy' : {
-				'method' : 'post',
-				'parameters' : [ { 'breads' : 'double' } ]
-			},
-			'pay' : {
-				'method' : 'post',
-				'parameters' : [ { 'amount' : 'double' } ]
-			},
-		}
-	};
-
   res
   	.status(200)
   	.send(api_list);
