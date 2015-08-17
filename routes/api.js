@@ -8,8 +8,27 @@ function send(res, rawData, data){
 		res.send(data || rawData).end();	
 }
 
-router.get('/', function(req, res) {
-  res.status(200).send('bread balance API-root { get: [\'/balance\'], post: [\'/buy/:breads\', \'/pay/:amount\']}');
+router.get('/?', function(req, res) {
+	var api_list = {
+		'bread balance API' : {
+			'balance' : {
+				'method' : 'get',
+				'parameters' : []
+			},
+			'buy' : {
+				'method' : 'post',
+				'parameters' : [ { 'breads' : 'double' } ]
+			},
+			'pay' : {
+				'method' : 'post',
+				'parameters' : [ { 'amount' : 'double' } ]
+			},
+		}
+	};
+
+  res
+  	.status(200)
+  	.send(api_list);
 });
 
 router.get('/balance', function(req, res){
