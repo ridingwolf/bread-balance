@@ -47,4 +47,10 @@ router.get('/pay/:amount', function(req, res){
 	res.send('amount payed back .... <br>todo: implement and return status, change to post');
 });
 
+router.get('/test', function(req, res) {
+  res
+  	.status(200)
+  	.send({'str' : 'values'});
+});
+
 module.exports = router;
