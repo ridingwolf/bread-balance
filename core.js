@@ -44,7 +44,7 @@ function getTestBalance(sendData){
 		_.forEach(dates, function addToTotal(date){
 			var purchase = data[date];
 			if(purchase){
-				balance -= purchase.price;
+				balance -= purchase.Price;
 				purchase['Date'] = date;
 				history.push(purchase);
 			}
