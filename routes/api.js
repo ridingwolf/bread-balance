@@ -22,13 +22,11 @@ function send(res, rawData, data){
 	if(rawData.error)
 		res.status(500).send(rawData.error);
 	else
-		res.send(data || rawData).end();	
+		res.status(200).send(data || rawData).end();	
 }
 
 router.get('/?', function(req, res) {
-  res
-  	.status(200)
-  	.send(api_list);
+  	send(res, api_list);
 });
 
 router.get('/balance', function(req, res){
@@ -39,7 +37,7 @@ router.get('/balance', function(req, res){
 
 router.post('/buy/:breads', function(req, res){
 	core.buyBreads(req.params.breads, function callback(data){
-		send(res, data, 200);
+		send(res, data);
 	});	
 });
 
@@ -48,9 +46,9 @@ router.get('/pay/:amount', function(req, res){
 });
 
 router.get('/test', function(req, res) {
-  res
-  	.status(200)
-  	.send({'str' : 'values'});
+  core.getTestBalance(function(data) {
+  	send(res,data);
+  });
 });
 
 module.exports = router;
