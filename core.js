@@ -17,7 +17,7 @@ function getBalance(sendData){
 		_.forEach(dates, function addToTotal(date){
 			var purchase = data[date];
 			if(purchase){
-				balance -= purchase.price;
+				balance -= purchase.Price;
 				purchase['Date'] = date;
 				history.push(purchase);
 			}
@@ -84,7 +84,7 @@ function buyBreads(numberOfBreads, sendData){
 			data.updateDebtData(debt, sendData);
 		}
 		catch(ex){
-			sendData({ 'error' : ex.toString() });
+			sendData({ 'Error' : ex.toString() });
 		}
 
 	});
