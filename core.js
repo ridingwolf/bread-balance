@@ -52,7 +52,7 @@ function getTestBalance(sendData){
 
 		sendData({ 
 			'Balance' : balance,
-			'History' : null
+			'History' : history
 		});
 	});
 }
