@@ -45,10 +45,4 @@ router.get('/pay/:amount', function(req, res){
 	res.send('amount payed back .... <br>todo: implement and return status, change to post');
 });
 
-router.get('/test', function(req, res) {
-  core.getTestBalance(function(data) {
-  	send(res,data);
-  });
-});
-
 module.exports = router;

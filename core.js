@@ -30,34 +30,6 @@ function getBalance(sendData){
 	});
 }
 
-function getTestBalance(sendData){
-	data.collectDebtData(function createBalance(data){
-		if(data.error){
-			sendData(data);
-			return;
-		}
-
-		var dates = Object.keys(data),
-		balance = 0.0
-		history = [];
-
-		_.forEach(dates, function addToTotal(date){
-			var purchase = data[date];
-			if(purchase){
-				balance -= purchase.Price;
-				purchase['Date'] = date;
-				history.push(purchase);
-			}
-		});
-
-		sendData({ 
-			'Balance' : balance,
-			'History' : history
-		});
-	});
-}
-
-
 function buyBreads(numberOfBreads, sendData){
 	data.collectDebtData(function updateDebt(debt){
 		try {
@@ -96,4 +68,3 @@ function getDateKey(date){
 
 module.exports.getBalance = getBalance;
 module.exports.buyBreads = buyBreads;
-module.exports.getTestBalance = getTestBalance;
