@@ -8,14 +8,14 @@ function collectDebtData(getDataCallback){
 		if(exists){
 			fs.readFile(debtFile, function processJsonFile(err, data){
 				if(err){
-					getDataCallback({ "error" : err.toString() });
+					getDataCallback({ "Error" : err.toString() });
 				}
 				
 				try{
 					getDataCallback(JSON.parse(data))
 				}
 				catch(ex){
-					getDataCallback({ "error" : ex.toString()});
+					getDataCallback({ "Error" : ex.toString()});
 				}
 			});			
 		}
@@ -29,13 +29,13 @@ function updateDebts(data, updateDebtsCallback){
 	try{
 		fs.writeFile(debtFile, JSON.stringify(data, null, '\t'), function callBack(err){
 		if(err)
-			updateDebtsCallback({ 'error' : err.toString() });
+			updateDebtsCallback({ 'Error' : err.toString() });
 		else
 			updateDebtsCallback(data);
 		});
 	}
 	catch(ex){
-		updateDebtsCallback({ 'error' : ex.toString() });
+		updateDebtsCallback({ 'Error' : ex.toString() });
 	}
 }
 
@@ -43,13 +43,13 @@ function updatePayments(data, updatePaymentsCallback){
 	try{
 		fs.writeFile(debtFile, JSON.stringify(data, null, '\t'), function callBack(err){
 		if(err)
-			updatePaymentsCallback({ 'error' : err.toString() });
+			updatePaymentsCallback({ 'Error' : err.toString() });
 		else
 			updatePaymentsCallback(data);
 		});
 	}
 	catch(ex){
-		updatePaymentsCallback({ 'error' : ex.toString() });
+		updatePaymentsCallback({ 'Error' : ex.toString() });
 	}
 }
 

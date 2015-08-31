@@ -19,8 +19,8 @@ var api_list = {
 };
 
 function send(res, rawData, data){
-	if(rawData.error)
-		res.status(500).send(rawData.error);
+	if(rawData.Error)
+		res.status(500).send(rawData.Error);
 	else
 		res.status(200).send(data || rawData).end();	
 }

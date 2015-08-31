@@ -18,14 +18,14 @@ function getBalance(sendData){
 			var purchase = data[date];
 			if(purchase){
 				balance -= purchase.price;
-				purchase['date'] = date;
+				purchase['Date'] = date;
 				history.push(purchase);
 			}
 		});
 
 		sendData({ 
-			'balance' : balance,
-			'history' : history
+			'Balance' : balance,
+			'History' : history
 		});
 	});
 }
@@ -45,13 +45,13 @@ function getTestBalance(sendData){
 			var purchase = data[date];
 			if(purchase){
 				balance -= purchase.price;
-				purchase['date'] = date;
+				purchase['Date'] = date;
 				history.push(purchase);
 			}
 		});
 
 		sendData({ 
-			'balance' : balance
+			'Balance' : balance
 			//'history' : history
 		});
 	});
@@ -65,8 +65,8 @@ function buyBreads(numberOfBreads, sendData){
 			var today = getDateKey(new Date(Date.now())),
 			breads = Number(numberOfBreads),
 			item = { 
-				'breads' : breads, 
-				'price' : breads * unitPrice 
+				'Breads' : breads, 
+				'Price' : breads * unitPrice 
 			};
 
 			if(debt[today]){
@@ -75,9 +75,9 @@ function buyBreads(numberOfBreads, sendData){
 			}
 			debt[today] = item;
 			
-			if(debt['error']){
-				debt['error'] = null;
-				delete debt['error'];
+			if(debt['Error']){
+				debt['Error'] = null;
+				delete debt['Error'];
 			}
 
 
