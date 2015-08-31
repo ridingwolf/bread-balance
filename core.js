@@ -51,8 +51,8 @@ function getTestBalance(sendData){
 		});
 
 		sendData({ 
-			'Balance' : balance
-			//'history' : history
+			'Balance' : balance,
+			'History' : null
 		});
 	});
 }
