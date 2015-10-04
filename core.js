@@ -42,8 +42,8 @@ function buyBreads(numberOfBreads, sendData){
 			};
 
 			if(debt[today]){
-				item.breads += debt[today].breads;
-				item.price += debt[today].price;
+				item.Breads += debt[today].Breads;
+				item.Price += debt[today].Price;
 			}
 			debt[today] = item;
 			
