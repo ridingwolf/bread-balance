@@ -53,7 +53,7 @@ function buyBreads(numberOfBreads, sendData){
 			}
 
 
-			data.updateDebtData(debt, sendData);
+			data.updateDebts(debt, sendData);
 		}
 		catch(ex){
 			sendData({ 'Error' : ex.toString() });
