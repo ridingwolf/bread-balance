@@ -1,7 +1,7 @@
 var fs = require('fs');
 
-var debtFile = '../debt.json',
-paymentsFile = '../payments.json';
+var debtFile = './data/debt.json',
+paymentsFile = './data/payments.json';
 
 function collectDebtData(getDataCallback){
 	fs.exists(debtFile, function (exists){
