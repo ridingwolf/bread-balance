@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nodemon ./bin/www",
-    "live": "PORT=3025 node ./bin/www",
-    "staging": "PORT=3030 node ./bin/www"
+    "live": "node ./bin/www",
+    "staging": "node ./bin/www --staging"
   },
   "dependencies": {
     "express": "=4.9.x",
