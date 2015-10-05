@@ -8,8 +8,9 @@ _.forEach(process.argv, function(argument){
 		port = 3025;
 });
 
-app.listen(port);
+app.set('port', port)
 app.use('/', routes);
+app.listen(app.get('port'), function(){ console.log('API running on port:' + app.get('port')); });
 
 app.use(function(req, res, next) {
     var err = new Error('Requested Page Not Found');
