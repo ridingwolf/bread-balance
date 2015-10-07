@@ -1,21 +1,16 @@
 var _ = require('lodash'),
 	routes = require('./routes/api'),
-	app = require('express')(),
-	port = 3030;
+	app = require('express')();
 
-_.forEach(process.argv, function(argument){
-	if(argument === '--staging')
-		port = 3025;
-});
-
-app.set('port', port)
 app.use('/', routes);
-app.listen(app.get('port'), function(){ console.log('API running on port:' + app.get('port')); });
 
 app.use(function(req, res, next) {
     var err = new Error('Requested Page Not Found');
     err.status = 404;
     next(err);
 });
+
+app.set('port', process.env.PORT || 3000);
+app.listen(app.get('port'), function () { console.log('API running on port:' + app.get('port')); });
 
 module.exports = app;
