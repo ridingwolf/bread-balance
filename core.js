@@ -58,8 +58,13 @@ function buyBreads(numberOfBreads, sendData){
 		catch(ex){
 			sendData({ 'Error' : ex.toString() });
 		}
-
+ 
 	});
+}
+
+function payAmount(amount, sendData){
+	// don't remove from debt, only add to payed.
+	//testdrive keeping the right balance after a payment
 }
 
 function getDateKey(date){
@@ -68,3 +73,4 @@ function getDateKey(date){
 
 module.exports.getBalance = getBalance;
 module.exports.buyBreads = buyBreads;
+module.exports.payAmount = payAmount;
