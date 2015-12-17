@@ -10,7 +10,5 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function () { console.log('API running on port:' + app.get('port')); });
-
 module.exports = app;
