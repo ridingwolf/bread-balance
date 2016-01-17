@@ -2,7 +2,7 @@ var router = require('express').Router();
 var core = require('../core');
 
 var api_list = {
-	'bread-balance API' : {
+	'bread-balance API (MASTER)' : {
 		'balance' : {
 			'method' : 'get',
 			'parameters' : []
