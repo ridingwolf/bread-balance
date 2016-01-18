@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nodemon ./bin/www",
-    "live": "node ./bin/www",
-    "staging": "node ./bin/www --staging"
+    "live": "nodemon ./bin/run_production",
+    "staging": "nodemon ./bin/run_master"
   },
   "dependencies": {
     "express": "~4.13.1",

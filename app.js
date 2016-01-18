@@ -1,7 +1,9 @@
 var _ = require('lodash'),
 	routes = require('./routes/api'),
-	app = require('express')();
+	app = require('express')(),
+	currentEnvironment;
 
+routes.forEnvironment(function(){ return currentEnvironment; });
 app.use('/', routes);
 
 app.use(function(req, res, next) {
@@ -10,5 +12,7 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-app.listen(app.get('port'), function () { console.log('API running on port:' + app.get('port')); });
-module.exports = app;
+module.exports.run = function(environment, port){ 
+	currentEnvironment = environment.toUpperCase();
+	app.listen(port, function () { console.log('Running ' + currentEnvironment +' API (port ' + port + ')'); });
+} 
