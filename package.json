@@ -3,13 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "nodemon ./bin/www",
-    "live": "nodemon ./bin/run_production",
-    "staging": "nodemon ./bin/run_master"
+    "live": "nodemon ./run_production",
+    "staging": "nodemon ./run_master"
   },
   "dependencies": {
     "express": "~4.13.1",
-    "debug": "=2.0.x",
+    "debug": "=2.0.x",  
     "lodash" : "=2.4.x"
   }
 }
