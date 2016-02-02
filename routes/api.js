@@ -46,8 +46,8 @@ router.get('/pay/:amount', function(req, res){
 	res.send('amount payed back .... <br>todo: implement and return status, change to post');
 });
 
-router.get('/test', (req, res) => {
-	require('fs').realpath('./', (err, resolvedPath) => {
+router.get('/test', function(req, res){
+	require('fs').realpath('./', function(err, resolvedPath){
   		if (err) 
   			throw err;
 		

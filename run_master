@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('./app').run('development', 3025);
+require('./app').run('development', process.env.PORT || 3025);
