@@ -10,8 +10,10 @@ app.use(require('gnu-terry-pratchett')());
 
 app.use('/', routes);
 
-app.use(function(req, res, next) {
-    res.status(404).send('Requested Page Not Found');
+app.use(function(request, response, next) {
+    response
+    	.status(404)
+    	.send('Requested Page Not Found');
 });
 
 module.exports.run = function(environment, port){ 
