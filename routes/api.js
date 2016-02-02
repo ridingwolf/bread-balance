@@ -46,6 +46,16 @@ router.get('/pay/:amount', function(req, res){
 	res.send('amount payed back .... <br>todo: implement and return status, change to post');
 });
 
+router.get('/test', (req, res) => {
+	require('fs').realpath('./', (err, resolvedPath) => {
+  		if (err) 
+  			throw err;
+		
+		console.log(resolvedPath);
+		res.send(resolvedPath);
+	});
+});
+
 module.exports = router;
 
 //helper to imject the current environmnet
