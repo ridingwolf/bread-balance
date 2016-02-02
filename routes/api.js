@@ -52,7 +52,6 @@ router.get('/test', function(req, res){
   			throw err;
 		
 		console.log(resolvedPath);
-		
 		res.send(resolvedPath);
 	});
 });
