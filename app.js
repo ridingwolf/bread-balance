@@ -4,12 +4,14 @@ var _ = require('lodash'),
 	currentEnvironment;
 
 routes.forEnvironment(function(){ return currentEnvironment; });
+
+//won't do much unless the api starts serving pages
+app.use(require('gnu-terry-pratchett')());
+
 app.use('/', routes);
 
 app.use(function(req, res, next) {
-    var err = new Error('Requested Page Not Found');
-    err.status = 404;
-    next(err);
+    res.status(404).send('Requested Page Not Found');
 });
 
 module.exports.run = function(environment, port){ 
