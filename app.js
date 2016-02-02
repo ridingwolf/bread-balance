@@ -5,9 +5,7 @@ var _ = require('lodash'),
 
 routes.forEnvironment(function(){ return currentEnvironment; });
 
-//won't do much unless the api starts serving pages
-app.use(require('gnu-terry-pratchett')());
-
+app.use(require('gnu-terry-pratchett')()); //won't do much unless the api starts serving pages
 app.use('/', routes);
 
 app.use(function(request, response, next) {
