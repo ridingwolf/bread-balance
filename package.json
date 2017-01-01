@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "live": "nodemon ./run_production",
-    "staging": "nodemon ./run_master"
+    "start": "run ./app"
   },
   "dependencies": {
     "express": "~4.13.1",

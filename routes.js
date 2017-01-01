@@ -1,6 +1,5 @@
 var router = require('express').Router(),
-	core = require('../core'),
-	getEnvironment =  function (){ throw new Error('getEnvironment function was not set') };
+	core = require('./core');
 
 var api_list = {
  		'balance' : {
@@ -19,15 +18,13 @@ var api_list = {
 
 function send(res, rawData, data){
 	if(rawData.Error)
-		res.status(500).send(rawData.Error);
+		res.status(500).send(rawData.Error).end();
 	else
 		res.status(200).send(data || rawData).end();	
 }
 
 router.get('/?', function(req, res) {
-  	var result = {};
-  	result['bread-balance API(' + getEnvironment() + ')'] = api_list;
-  	send(res, result);
+  	send(res, { 'bread-balance' : api_list });
 });
 
 router.get('/balance', function(req, res){
@@ -43,10 +40,7 @@ router.post('/buy/:breads', function(req, res){
 });
 
 router.get('/pay/:amount', function(req, res){
-	res.send('amount payed back .... <br>todo: implement and return status, change to post');
+	res.send('amount payed back ....; ToDo: implement and return status, change to post');
 });
 
 module.exports = router;
-
-//helper to imject the current environmnet
-module.exports.forEnvironment = function forEnvironment(getEnv) { getEnvironment = getEnv; };

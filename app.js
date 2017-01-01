@@ -1,9 +1,6 @@
 var _ = require('lodash'),
-	routes = require('./routes/api'),
-	app = require('express')(),
-	currentEnvironment;
-
-routes.forEnvironment(function(){ return currentEnvironment; });
+	routes = require('./routes'),
+	app = require('express')();
 
 app.use(require('gnu-terry-pratchett')()); //won't do much unless the api starts serving pages
 app.use('/', routes);
@@ -14,7 +11,7 @@ app.use(function(request, response, next) {
     	.send('Requested Page Not Found');
 });
 
-module.exports.run = function(environment, port){ 
-	currentEnvironment = environment.toUpperCase();
-	app.listen(port, function () { console.log('Running ' + currentEnvironment +' API (port ' + port + ')'); });
-} 
+module.exports.run = function(){
+	var port = process.env.PORT || 3000; 
+	app.listen(port, function () { console.log('Running API (port ' + port + ')'); });
+}
