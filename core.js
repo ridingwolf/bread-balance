@@ -11,7 +11,7 @@ function getBalance(sendData){
 		}
 
 		var dates = Object.keys(data),
-		balance = 0.0
+		balance = 0.0,
 		history = [];
 
 		_.forEach(dates, function addToTotal(date){
