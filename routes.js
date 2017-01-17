@@ -1,14 +1,8 @@
 var router = require('express').Router(),
 	core = require('./core'),
 	api_root = '/?',
-	_ = require('lodash');
-
-function send(res, rawData, data){
-	if(rawData.Error)
-		res.status(500).send(rawData.Error).end();
-	else
-		res.status(200).send(data || rawData).end();	
-}
+	_ = require('lodash'),
+	handler = require('./responseHandler');
 
 router.get(api_root, function(req, res) {
 	var routes = router
@@ -21,31 +15,31 @@ router.get(api_root, function(req, res) {
 				return active ? method : null;
 			})
 			.filter(function(method){ return method && method.length > 0; })
-			.join('/');
-			methods = methods.length > 0 ? methods + ':' : '';
-
-
+			.join('/') + ':';
 
 			return methods + layer.route.path;
 		});	
 
-  	send(res, { 'bread-balance' : routes });
+  	handler.send(res, { 
+		'version' : require('./package.json').version || 'unknown', 
+  		'routes' : routes 
+  	});
 });
 
 router.get('/balance', function(req, res){
 	core.getBalance(function callback(data){
-		send(res, data);
+		handler.send(res, data);
 	});
 });
 
 router.post('/buy/:breads', function(req, res){
 	core.buyBreads(req.params.breads, function callback(data){
-		send(res, data);
+		handler.send(res, data);
 	});	
 });
 
 router.get('/pay/:amount', function(req, res){
-	res.send('amount payed back ....; ToDo: implement and return status, change to post');
+	handler.send(res, {}, 'Amount payed back ....; ToDo: implement and return status, change to post');
 });
 
 module.exports = router;
