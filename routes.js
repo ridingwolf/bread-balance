@@ -1,20 +1,7 @@
 var router = require('express').Router(),
-	core = require('./core');
-
-var api_list = {
- 		'balance' : {
-			'method' : 'get',
-			'parameters' : []
-		},
-		'buy' : {
-			'method' : 'post',
-			'parameters' : [ { 'breads' : 'double' } ]
-		},
-		'pay' : {
-			'method' : 'post',
-			'parameters' : [ { 'amount' : 'double' } ]
-		}
-};
+	core = require('./core'),
+	api_root = '/?',
+	_ = require('lodash');
 
 function send(res, rawData, data){
 	if(rawData.Error)
@@ -23,8 +10,26 @@ function send(res, rawData, data){
 		res.status(200).send(data || rawData).end();	
 }
 
-router.get('/?', function(req, res) {
-  	send(res, { 'bread-balance' : api_list });
+router.get(api_root, function(req, res) {
+	var routes = router
+		.stack
+		.filter(function (layer){ 
+			return layer.route.path && layer.route.path != api_root; 
+		})
+		.map(function(layer){
+			var methods = _.map(layer.route.methods || {}, function(active, method){
+				return active ? method : null;
+			})
+			.filter(function(method){ return method && method.length > 0; })
+			.join('/');
+			methods = methods.length > 0 ? methods + ':' : '';
+
+
+
+			return methods + layer.route.path;
+		});	
+
+  	send(res, { 'bread-balance' : routes });
 });
 
 router.get('/balance', function(req, res){
