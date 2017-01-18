@@ -13,13 +13,22 @@ function getRoutes(stack, route_prefix){
 			return layer && layer.route && layer.route.path && layer.route.path != api_root; 
 		})
 		.map(function(layer){
-			var methods = _.map(layer.route.methods || {}, function(active, method){
-				return active ? method : null;
-			})
-			.filter(function(method){ return method && method.length > 0; })
-			.join('/') + '::';
+			var methods = _
+				.map(
+					layer.route.methods || {}, 
+					function(active, method){
+						return active ? method : null;
+					}
+				)
+				.filter(function(method){ 
+					return method && method.length > 0; 
+				})
+				.join();
 
-			return methods + route_prefix + layer.route.path;
+			return {
+				route : route_prefix + layer.route.path,
+				access : methods
+			};
 		});
 
 	var partial_routes = stack
